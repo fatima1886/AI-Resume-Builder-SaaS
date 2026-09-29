@@ -1,55 +1,66 @@
 
 
 import Image from "next/image";
-import React from 'react';
-
+import "./globals.css";
+import VignetteGradientMesh from "@/app/components/ui/background"
 const Home = () => {
   return (
-    <div className="w-full mt-[-100] py-[400px] min-h-[calc(100vh-4rem)] flex flex-col lg:flex-row justify-between items-center px-6 sm:px-12 lg:px-24 bg-white bg-gradient-to-r from-white via-sky-100/30 to-sky-100 gap-16 py-12 pt-12 lg:py-0">
-      <div className="flex-1 max-w-xl text-left flex flex-col items-start pt-40 pb-20">
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-sky-50 text-sky-700 border border-amber-500 mb-6">
-          <span className="text-[#f59e0b]">✨</span> Next-Gen AI Workspace
-        </span>
+    <div className="relative w-full min-h-[calc(100vh-4rem)] bg-white bg-gradient-to-r from-white via-sky-50/30 to-sky-100/50 px-6 sm:px-12 lg:px-24 "> <VignetteGradientMesh variant="hero"/> 
+    
+  
+      <div className="relative z-10 mx-auto flex min-h-[calc(100vh-4rem)] w-full max-w-7xl flex-col items-center justify-between gap-10 py-50 lg:flex-row lg:py-0 mt-[-50] mb-40">
+        <div className="flex w-full max-w-xl flex-1 flex-col items-start pt-10 text-left sm:pt-16 lg:pt-24">
+          <span className="mb-6 inline-flex items-center gap-1.5 rounded-full border border-amber-500 bg-sky-50 px-3 py-1 text-xs font-semibold text-sky-700">
+            <span className="text-[#f59e0b]">✨</span>
+            Next-Gen AI Workspace
+          </span>
 
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black font-serif tracking-normal text-slate-900 leading-[1.15]">
-          Build a <br className="hidden sm:inline" />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0284c7] via-[#2563eb] to-[#7c3aed]">
-            Premium Resume
-          </span> <br />
-          in Minutes.
-        </h1>
+          <h1 className="sans text-5xl font-bold leading-[1.15] tracking-normal text-slate-900 sm:text-5xl lg:text-6xl">
+            Build a <br className="hidden sm:inline" />
+            <span className="bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 bg-clip-text text-transparent">
+              Premium Resume
+            </span>{" "}
+            <br />
+            in Minutes.
+          </h1>
 
-        <p className="mt-6 text-slate-600 text-base sm:text-lg leading-relaxed max-w-lg">
-          Input your raw details, apply smart structural AI text optimizations, and view your changes live on an interactive blueprint template grid.
-        </p>
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg">
+            Input your raw details, apply smart structural AI text optimizations, and view your changes live on an interactive blueprint template grid.
+          </p>
 
-        <div className="mt-8 flex items-center gap-4 w-full sm:w-auto">
-          <a
-            href="/resume-builder"
-            className="w-full sm:w-auto text-center bg-[#0284c7] hover:bg-sky-700 text-white font-medium px-8 py-4 rounded-xl shadow-lg shadow-sky-600/20 transition transform active:scale-98"
-          >
-            Sign In
-          </a>
+          <div className="mt-8 flex w-full flex-col gap-4 sm:w-auto sm:flex-row">
+            <a
+              href="/resume-builder"
+              className="w-full rounded-xl bg-[#0284c7] px-8 py-4 text-center font-medium text-white shadow-lg shadow-sky-600/20 transition-transform duration-200 hover:bg-sky-700 active:scale-[0.98] sm:w-auto"
+            >
+              Sign In
+            </a>
 
-          <a
-            href="/resume-builder"
-            className="w-full sm:w-auto text-center text-sky-700 font-medium px-8 py-4 rounded-xl shadow-lg shadow-sky-600/20 transition transform active:scale-98 border border-[#0284c7] bg-white hover:bg-sky-50"
-          >
-            Sign Up
-          </a>
+            <a
+              href="/resume-builder"
+              className="w-full rounded-xl border border-[#0284c7] bg-[var(--bg-canvas)] text-[var(--bg-foreground)] px-8 py-4 text-center font-medium text-sky-700 shadow-lg shadow-sky-600/20 transition-transform duration-200 hover:bg-sky-50 active:scale-[0.98] sm:w-auto"
+            >
+              Sign Up
+            </a>
+          </div>
         </div>
-      </div>
 
-      <div className="flex-1 flex justify-center items-center w-full relative">
-        <div className="relative w-full mt-12 aspect-[1/1.414] bg-white rounded-2xl shadow-2xl shadow-sky-900/15 border border-slate-200/60 p-4 transition-all duration-300 transform rotate-5 hover:rotate-0 hover:scale-[1.02] cursor-pointer">
-          <Image
-            src="/hero-resume.svg.png"
-            alt="Premium Resume Blueprint Workspace"
-            fill
-            sizes="(max-width: 1000px) 100vw, (max-width: 1600px) 80vw, 33vw"
-            className="object-contain p-2 shadow-md transition-shadow duration-300 hover:shadow-2xl hover:shadow-amber-500"
-            priority
-          />
+        <div className="flex w-full flex-1 items-center justify-center">
+          <div
+            className=" hidden md:block md:relative md:aspect-[1/1.414] md:w-full md:max-w-[420px] rotate-3 cursor-pointer overflow-hidden rounded-2xl border border-slate-200/60 bg-white shadow-2xl shadow-sky-900/15 transition-all duration-300 hover:rotate-0 hover:scale-[1.02] sm:max-w-[480px] mt-20"
+            aria-label="Premium resume mockup preview"
+          >
+            <Image
+              src="/hero-resume.svg.png"
+              alt="Premium Resume Blueprint Workspace"
+              fill
+              loading="eager"
+              sizes="(max-width: 1200px) 100vw, (max-width: 2000px) 80vw, 33vw"
+              className="object-contain p-2"
+              
+             
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -57,4 +68,29 @@ const Home = () => {
 };
 
 export default Home;
+
+
+
+// import VignetteGradientMesh from "@/app/components/ui/background";
+
+// export default function Home() {
+//   return (
+//     /* The outer container MUST force full-width, full-height, and remain relative */
+//     <div className="relative min-h-screen w-full overflow-x-hidden">
+      
+//       {/* 1. Mount the background component */}
+//       <VignetteGradientMesh variant="hero" />
+
+//       {/* 2. Wrap your content inside a relative element with a higher layer priority (z-10) */}
+//       <main className="relative z-10 flex min-h-screen flex-col items-center justify-center p-6 text-center">
+//         <h1 className="text-5xl font-bold tracking-tight text-[var(--color-bg-accent)]">
+//           Sky 500 Modern Interface
+//         </h1>
+//         <p className="mt-4 max-w-md text-lg opacity-70">
+//           Your custom vector meshes and soft geometric lines are running directly underneath this card surface.
+//         </p>
+//       </main>
+//     </div>
+//   );
+// }
 

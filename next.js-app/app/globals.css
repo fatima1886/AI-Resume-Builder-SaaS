@@ -5,10 +5,47 @@
   /* Link standard font layout utilities straight to your Next.js configuration tokens */
   --font-sans: "Jakarta", sans-serif;
   --font-serif: "Prata", serif;
-    --font-serif: var(--font-instrument-serif), serif;
+  --font-serif: var(--font-instrument-serif), serif;
   --color-brand-accent: #7c3aed; /* Your premium purple identity */
+
+  --background-image-saas-grid: linear-gradient(to right, rgba(2, 132, 199, 0.06) 1px, transparent 1px),
+                                linear-gradient(to bottom, rgba(2, 132, 199, 0.06) 1px, transparent 1px);
+
+  /* ======================================================== */
+  /* BGKit Base Root Token Declarations (Sky 500 Theme)        */
+  /* ======================================================== */
+  /* --bg-canvas: #ffffff;                      /* Bright white base layer */
+  /* --bg-accent: #0ea5e9;                      Primary Color: Sky 500 */
+  /* --bg-secondary: #38bdf8;                   Secondary Color: Sky 400 */
+  /* --bg-accent-2: #6366f1;                    Accent Color 2: Indigo 500 */
+  /* --bg-accent-3: #bae6fd;                    Accent Color 3: Sky 200 */
+  /* --bg-line: rgba(14, 165, 233, 0.08);       Technical grid: Soft transparent Sky 500 */
+  /* --bg-foreground: #0f172a;                  Readable Slate 900 base text */
+  /* --bg-border: #e2e8f0;                      Clean light gray separator borders */ 
+   --bg-canvas: #f8fafc;                      /* Soft, slate off-white (instead of blinding pure white) */
+  --bg-accent: #0ea5e9;                      /* Primary Color: Sky 500 */
+  --bg-secondary: #0284c7;                   /* Slightly darker Sky 600 so it shows up clearly */
+  --bg-accent-2: #4f46e5;                    /* Darker Indigo 600 for contrast */
+  --bg-accent-3: #bae6fd;                    /* Soft background mesh blend */
+  --bg-line: rgba(14, 165, 233, 0.25);       /* INCREASED OPACITY: Technical grid lines are now highly visible */
+  --bg-foreground: #0f172a;                  
+  --bg-border: #cbd5e1;
 }
 
 body {
   font-family: var(--font-sans);
+  background-color: var(--bg-canvas);
+  color: var(--bg-foreground);
+}
+
+/* Maps the root tokens to Tailwind CSS v4 utility tokens */
+@theme {
+  --color-bg-canvas:     var(--bg-canvas);
+  --color-bg-accent:     var(--bg-accent);
+  --color-bg-secondary:  var(--bg-secondary);
+  --color-bg-accent-2:   var(--bg-accent-2);
+  --color-bg-accent-3:   var(--bg-accent-3);
+  --color-bg-line:       var(--bg-line);
+  --color-bg-border:     var(--bg-border);
+  --color-bg-foreground: var(--bg-foreground);
 }
