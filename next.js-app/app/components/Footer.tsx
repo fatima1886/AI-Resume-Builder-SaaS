@@ -146,7 +146,7 @@ export default function Footer() {
   const brandColor = 'sky-600'; 
 
   return (
-    <footer className="bg-[#0f172a] text-[#94a3b8] font-sans border-t border-white/5 py-8">
+    <footer className="bg-[#0f172a] text-[#94a3b8] font-sans border-t border-white/5 py-8 sticky bottom-0">
       <div className="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm">
         
         {/* Brand Copyright */}

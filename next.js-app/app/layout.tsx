@@ -46,7 +46,7 @@ export default function RootLayout({
         </header>
         
         <main className="flex-1 flex flex-col">{children}</main>
-        <div className="mt-[-80] relative z-50">
+        <div className="mt-[-80]  z-50">
        <Footer/>
        </div>
       </body>
