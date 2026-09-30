@@ -13,17 +13,16 @@ const Inputsection = () => {
     phone: '',
       location: '',    
     portfolioUrl: '',  
-    linkedinUrl: '',
-    githubUrl: '',
     summary: '',
   },
+   education: [
+    { id: '1', school: '', degree: '', graduationDate: '' }
+  ],
   skills: [], // Array of strings: ['React', 'Node.js']
   experience: [
     { id: '1', company: '', role: '', startDate: '', endDate: '', description: '' }
   ],
-  education: [
-    { id: '1', school: '', degree: '', graduationDate: '' }
-  ]
+ 
     }
 const [resumeitem, setresumeitem] = useState(itemlist)
   return (
@@ -53,17 +52,17 @@ const [resumeitem, setresumeitem] = useState(itemlist)
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="flex flex-col gap-1.5">
             <label className="text-xs font-semibold text-slate-600 tracking-wide uppercase">First Name</label>
-            <input type="text" name="firstName" placeholder="Fatima" className="w-full px-4 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all text-slate-800" />
+            <input type="text" name="firstName" placeholder="Ali" className="w-full px-4 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all text-slate-800" />
           </div>
           
           <div className="flex flex-col gap-1.5">
             <label className="text-xs font-semibold text-slate-600 tracking-wide uppercase">Last Name</label>
-            <input type="text" name="lastName" placeholder="Ali" className="w-full px-4 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all text-slate-800" />
+            <input type="text" name="lastName" placeholder="Raza" className="w-full px-4 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all text-slate-800" />
           </div>
 
           <div className="flex flex-col gap-1.5">
             <label className="text-xs font-semibold text-slate-600 tracking-wide uppercase">Email Address</label>
-            <input type="email" name="email" placeholder="fatima@example.com" className="w-full px-4 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all text-slate-800" />
+            <input type="email" name="email" placeholder="Ali@example.com" className="w-full px-4 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all text-slate-800" />
           </div>
 
           <div className="flex flex-col gap-1.5">
@@ -71,11 +70,76 @@ const [resumeitem, setresumeitem] = useState(itemlist)
             <input type="tel" name="phone" placeholder="+92 300 1234567" className="w-full px-4 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all text-slate-800" />
           </div>
 
+            <div className="flex flex-col gap-1.5">
+            <label className="text-xs font-semibold text-slate-600 tracking-wide uppercase">Location</label>
+            <input type="text" name="lastName" placeholder="Gulberg, Lahore" className="w-full px-4 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all text-slate-800" />
+          </div>
+
+            <div className="flex flex-col gap-1.5">
+            <label className="text-xs font-semibold text-slate-600 tracking-wide uppercase">Portfolio URL</label>
+            <input type="text" name="lastName" placeholder="www.google.com" className="w-full px-4 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all text-slate-800" />
+          </div>
+
           <div className="md:col-span-2 flex flex-col gap-1.5">
             <label className="text-xs font-semibold text-slate-600 tracking-wide uppercase">Professional Summary</label>
             <textarea name="summary" rows={4} placeholder="Briefly describe your career goals and standout capabilities..." className="w-full px-4 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all text-slate-800 resize-none" />
           </div>
         </div>
+
+
+
+
+
+        {/* ================================ */}
+        {/* Education */}
+        {/* ====================================== */}
+          {/* Education Section Container */}
+<div className="flex flex-col gap-4 mt-6">
+  <div className="flex items-center justify-between">
+    <h3 className="text-sm font-bold text-slate-700 tracking-wide uppercase">Education History</h3>
+    <button
+      type="button"
+      className="text-xs font-semibold text-sky-600 hover:text-sky-700 transition-colors flex items-center gap-1"
+    >
+      + Add Education
+    </button>
+  </div>
+
+  <div className="p-4 bg-white border border-slate-200 rounded-2xl relative flex flex-col gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="flex flex-col gap-1.5 md:col-span-2">
+        <label className="text-xs font-semibold text-slate-600 tracking-wide uppercase">School / University</label>
+        <input
+          type="text"
+          name="school"
+          placeholder="e.g. Stanford University"
+          className="w-full px-4 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all text-slate-800"
+        />
+      </div>
+
+      <div className="flex flex-col gap-1.5">
+        <label className="text-xs font-semibold text-slate-600 tracking-wide uppercase">Degree / Major</label>
+        <input
+          type="text"
+          name="degree"
+          placeholder="e.g. M.S. in Data Science"
+          className="w-full px-4 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all text-slate-800"
+        />
+      </div>
+
+      <div className="flex flex-col gap-1.5">
+        <label className="text-xs font-semibold text-slate-600 tracking-wide uppercase">Graduation Date</label>
+        <input
+          type="text"
+          name="graduationDate"
+          placeholder="e.g. May 2026"
+          className="w-full px-4 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all text-slate-800"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
 
       {/* =========================================================================
           3. SKILLS SECTION
@@ -88,9 +152,12 @@ const [resumeitem, setresumeitem] = useState(itemlist)
         
         <div className="flex gap-2">
           <input type="text" placeholder="Add a skill (e.g., React, TypeScript)" className="flex-1 px-4 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all text-slate-800" />
-          <button type="button" className="px-5 bg-slate-900 hover:bg-slate-800 text-white font-medium text-sm rounded-xl transition-colors shrink-0">
-            Add
-          </button>
+         <button
+      type="button"
+      className="text-xs font-semibold text-sky-600 hover:text-sky-700 transition-colors flex items-center gap-1"
+    >
+      + Add skill
+    </button>
         </div>
 
         {/* Visual Pill Badges container placeholder */}
@@ -113,9 +180,12 @@ const [resumeitem, setresumeitem] = useState(itemlist)
             <h2 className="text-xl font-bold text-slate-900">Work Experience</h2>
             <p className="text-sm text-slate-500">Detail your dynamic career positions and history.</p>
           </div>
-          <button type="button" className="inline-flex items-center gap-1.5 text-xs font-bold text-sky-600 hover:text-sky-700 transition-colors uppercase tracking-wider">
-            ➕ Add Job
-          </button>
+        <button
+      type="button"
+      className="text-xs font-semibold text-sky-600 hover:text-sky-700 transition-colors flex items-center gap-1"
+    >
+      + Add Job
+    </button>
         </div>
 
         {/* Individual Item Block */}
