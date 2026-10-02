@@ -3,28 +3,56 @@
 import React from 'react'
 import { useState } from 'react'
 
-const Inputsection = () => {
-    const itemlist = {
-        template: '',
-         personalInfo: {
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-      location: '',    
-    portfolioUrl: '',  
-    summary: '',
-  },
-   education: [
-    { id: crypto.randomUUID(), school: '', degree: '', graduationDate: '' }
-  ],
-  skills: [] as string[], // Array of strings: ['React', 'Node.js']
-  experience: [
-    { id:crypto.randomUUID() , company: '', role: '', startDate: '', endDate: '', description: '' }
-  ],
+type ResumeItem = {
+  template: string
+  personalInfo: {
+    firstName: string
+    lastName: string
+    email: string
+    phone: string
+    location: string
+    portfolioUrl: string
+    summary: string
+  }
+  education: { id: string; school: string; degree: string; graduationDate: string }[]
+  skills: string[]
+  experience: {
+    id: string
+    company: string
+    role: string
+    startDate: string
+    endDate: string
+    description: string
+  }[]
+}
+
+type InputsectionProps = {
+  resumeitem: ResumeItem
+  setresumeitem: React.Dispatch<React.SetStateAction<ResumeItem>>
+}
+
+const Inputsection = ({resumeitem, setresumeitem}: InputsectionProps) => {
+//     const itemlist = {
+//         template: '',
+//          personalInfo: {
+//     firstName: '',
+//     lastName: '',
+//     email: '',
+//     phone: '',
+//       location: '',    
+//     portfolioUrl: '',  
+//     summary: '',
+//   },
+//    education: [
+//     { id: crypto.randomUUID(), school: '', degree: '', graduationDate: '' }
+//   ],
+//   skills: [] as string[], // Array of strings: ['React', 'Node.js']
+//   experience: [
+//     { id:crypto.randomUUID() , company: '', role: '', startDate: '', endDate: '', description: '' }
+//   ],
  
-    }
-const [resumeitem, setresumeitem] = useState(itemlist)
+//     }
+// const [resumeitem, setresumeitem] = useState(itemlist)
 const [skillInput, setSkillInput] = useState('')
 
 function handleAdd() {
@@ -167,7 +195,7 @@ console.log(resumeitem);
       {/* ================================ */}
       {/* Education */}
       {/* ====================================== */}
-      <div className="flex flex-col gap-4 p-6 mt-6">
+      <div className="flex flex-col gap-4 p-6 mt-6 p-6 bg-white border border-slate-200 rounded-2xl shadow-sm space-y-6">
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-bold text-slate-900">Education History</h2>
           <button
