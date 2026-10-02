@@ -1,16 +1,11 @@
 // app/layout.tsx
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Prata ,Instrument_Serif } from "next/font/google"; // Removed unused Playfair_Display
+import { Prata ,Instrument_Serif } from "next/font/google"; // Removed unused Playfair_Display
 import "./globals.css";
 import Logo from "./components/Logo";
 import Footer from "./components/Footer";
 
-// Configure your primary Sans-Serif font (Body text, forms)
-// const jakartaSans = Plus_Jakarta_Sans({
-//   subsets: ["latin"],
-//   variable: "--font-jakarta-sans",
-//   display: "swap",
-// });
+
 
 const instrumentSerif = Instrument_Serif({
   weight: "400",
