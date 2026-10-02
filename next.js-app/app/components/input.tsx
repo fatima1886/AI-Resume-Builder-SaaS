@@ -114,12 +114,12 @@ function handleremove(targetindex: number) {
 
 
   return (
-    <div className="space-y-8">
-      <h1>Cammand section</h1>
+    <div className="space-y-8 bg-gray-100 p-5 rounded-xl border border-sky-600">
+      <h1 className='text-center text-2xl font-semibold text-slate-800'>Cammand section</h1>
 
 {/* colors */}
 {/* Colors Selector */}
-<div className="flex gap-4">
+<div className="flex gap-4 justify-center">
   {[
   { id: "slateBlue", name: "Slate Blue", hex: "#1E3A8A" },
   { id: "forest", name: "Forest Green", hex: "#064E3B" },
