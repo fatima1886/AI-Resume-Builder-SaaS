@@ -7,6 +7,7 @@ import Preview from '@/app/components/preview'
 const Page = () => {
 
    const itemlist = {
+    colors: '',
           template: '',
            personalInfo: {
       firstName: '',

@@ -4,6 +4,7 @@ import React from 'react'
 import { useState } from 'react'
 
 type ResumeItem = {
+  colors: string
   template: string
   personalInfo: {
     firstName: string
@@ -115,6 +116,46 @@ function handleremove(targetindex: number) {
   return (
     <div className="space-y-8">
       <h1>Cammand section</h1>
+
+{/* colors */}
+{/* Colors Selector */}
+<div className="flex gap-4">
+  {[
+  { id: "slateBlue", name: "Slate Blue", hex: "#1E3A8A" },
+  { id: "forest", name: "Forest Green", hex: "#064E3B" },
+  { id: "burgundy", name: "Burgundy Red", hex: "#4C0519" },
+  { id: "royal", name: "Modern Royal", hex: "#1E40AF" },  
+  { id: "teal", name: "Professional Teal", hex: "#115E59" },
+  { id: "plum", name: "Executive Plum", hex: "#3B0764" },  
+ { id: "ashGray", name: "Ash Gray", hex: "#F3F4F6" }
+  ].map((colorObj) => {
+    // 1. Properly check against the exact object ID key
+    const isSelected = resumeitem.colors === colorObj.id;
+
+    return (
+      <label
+        key={colorObj.id}
+         style={{ backgroundColor: colorObj.hex }} 
+        className={`relative flex flex-col h-8 w-8 border rounded-full cursor-pointer transition-all group ${
+          isSelected
+            ? 'border-sky-500 bg-sky-50/30 ring-2 ring-sky-400'
+            : 'border-slate-200 hover:border-slate-300 hover:bg-slate-50/50'
+        }`}
+      >
+        <input
+          type="radio"
+          name="colors"
+          value={colorObj.id}
+          checked={isSelected}
+          // 2. FIXED: Correctly updates 'colors' key in the state instead of 'template'
+          onChange={(e) => setresumeitem((prev) => ({ ...prev, colors: e.target.value }))}
+          className="absolute top-4 right-4 accent-sky-600 sr-only "
+        />
+      </label>
+    );
+  })}
+</div>
+
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {['Modern', 'Minimalist', 'Professional'].map((tpl) => {

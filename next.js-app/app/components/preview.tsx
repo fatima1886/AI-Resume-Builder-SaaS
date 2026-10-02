@@ -5,6 +5,7 @@ import MinimalistTemplate from "./templates/MinimalistTemplate"
 import ProfessionalTemplate from "./templates/ProfessionalTemplate"
 
 type ResumeItem = {
+    colors: string
   template: string
   personalInfo: {
     firstName: string
