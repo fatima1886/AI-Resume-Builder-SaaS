@@ -1,7 +1,9 @@
 
 
 import Image from "next/image";
+import { Show } from "@clerk/nextjs";
 import "./globals.css";
+import Link from "next/link";
 import VignetteGradientMesh from "@/app/components/ui/background"
 const Home = () => {
   return (
@@ -28,21 +30,27 @@ const Home = () => {
             Input your raw details, apply smart structural AI text optimizations, and view your changes live on an interactive blueprint template grid.
           </p>
 
-          <div className="mt-8 flex w-full flex-col gap-4 sm:w-auto sm:flex-row">
-            <a
-              href="/resume-builder"
-              className="w-full rounded-xl bg-[#0284c7] px-8 py-4 text-center font-medium text-white shadow-lg shadow-sky-600/20 transition-transform duration-200 hover:bg-sky-700 active:scale-[0.98] sm:w-auto"
-            >
-              Sign In
-            </a>
 
-            <a
-              href="/resume-builder"
-              className="w-full rounded-xl border border-[#0284c7] bg-[var(--bg-canvas)] text-[var(--bg-foreground)] px-8 py-4 text-center font-medium text-sky-700 shadow-lg shadow-sky-600/20 transition-transform duration-200 hover:bg-sky-50 active:scale-[0.98] sm:w-auto"
-            >
-              Sign Up
-            </a>
-          </div>
+
+ <div className="mt-10 flex items-center justify-center gap-x-6">
+        {/* Core 3: This button will ONLY show if the user is logged in */}
+        <Show when="signed-in">
+          <Link
+            href="/dashboard"
+            className="rounded-full bg-orange-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-sky-600 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-700"
+          >
+            Let's Build →
+          </Link>
+        </Show>
+
+        {/* Optional: You can add a second fallback block for signed-out users if you want */}
+        <Show when="signed-out">
+          <p className="text-sm font-medium text-orange-600 bg-purple-100 px-4 py-2 rounded-full">
+            Sign in above to unlock the AI builder
+          </p>
+        </Show>
+      </div>
+        
         </div>
 
         <div className="flex w-full flex-1 items-center justify-center">

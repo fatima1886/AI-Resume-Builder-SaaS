@@ -253,11 +253,11 @@ export default function ProfessionalTemplate({ data }: { data: any }) {
 
                 {/* Structured Contact Pills */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1.5 text-xs text-slate-300 font-mono">
-                    {personalInfo.email && <div className="flex items-center gap-2">✉️ <span>{personalInfo.email}</span></div>}
+                    {personalInfo.email && <div className="flex items-center gap-1">✉️ <span>{personalInfo.email}</span></div>}
                     {personalInfo.phone && <div className="flex items-center gap-2">📱 <span>{personalInfo.phone}</span></div>}
-                    {personalInfo.location && <div className="flex items-center gap-2">📍 <span>{personalInfo.location}</span></div>}
+                    {personalInfo.location && <div className="flex items-center gap-1">📍 <span>{personalInfo.location}</span></div>}
                     {personalInfo.portfolioUrl && (
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-1">
                             🔗{" "}
                             {/* DYNAMIC IMPLEMENTATION: Changes portfolio link text color */}
                             <a href={personalInfo.portfolioUrl} target="_blank" rel="noreferrer" className={`${activeTheme.text} hover:underline`}>
