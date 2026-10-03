@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { useState } from 'react'
+import AiHelperButton from './AiHelperButton'
 
 type ResumeItem = {
   colors: string
@@ -51,7 +52,7 @@ const Inputsection = ({resumeitem, setresumeitem}: InputsectionProps) => {
 //   experience: [
 //     { id:crypto.randomUUID() , company: '', role: '', startDate: '', endDate: '', description: '' }
 //   ],
- 
+
 //     }
 // const [resumeitem, setresumeitem] = useState(itemlist)
 const [skillInput, setSkillInput] = useState('')
@@ -228,7 +229,17 @@ console.log(resumeitem);
 
           <div className="md:col-span-2 flex flex-col gap-1.5">
             <label className="text-xs font-semibold text-slate-600 tracking-wide uppercase">Professional Summary</label>
-            <textarea name="summary" rows={4} onChange={(e)=>setresumeitem((prev)=>({...prev, personalInfo: {...prev.personalInfo, summary: e.target.value }}))} placeholder="Briefly describe your career goals and standout capabilities..." className="w-full px-4 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all text-slate-800 resize-none" />
+            <textarea name="summary" value={resumeitem.personalInfo.summary} rows={4} onChange={(e)=>setresumeitem((prev)=>({...prev, personalInfo: {...prev.personalInfo, summary: e.target.value }}))} placeholder="Briefly describe your career goals and standout capabilities..." className="w-full px-4 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all text-slate-800 resize-none" />
+<AiHelperButton
+  currentText={resumeitem.personalInfo.summary}
+  fieldType="summary"
+  onRefine={(refinedText) =>
+    setresumeitem((prev) => ({
+      ...prev,
+      personalInfo: { ...prev.personalInfo, 'summary' : refinedText },
+    }))
+  }
+/>
           </div>
         </div>
       </div>
@@ -375,6 +386,13 @@ console.log(resumeitem);
             <div className="md:col-span-2 flex flex-col gap-1.5">
               <label className="text-xs font-semibold text-slate-600 tracking-wide uppercase">Job Description / Achievements</label>
               <textarea value={item.description}  onChange={(e)=> handlechangeexp(item.id , 'description' , e.target.value)} rows={3} placeholder="Describe your primary ownership metrics and tech implementations..." className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 transition-all text-slate-800 resize-none" />
+                <AiHelperButton
+                  currentText={item.description}
+                  fieldType="experience"
+                  onRefine={(refinedText) =>
+                    handlechangeexp(item.id, 'description', refinedText)
+                  }
+                />
             </div>
           </div>
 
@@ -389,4 +407,13 @@ console.log(resumeitem);
 };
 
 export default Inputsection;
+
+
+
+
+
+
+
+
+
 
