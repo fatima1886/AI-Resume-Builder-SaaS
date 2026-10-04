@@ -94,11 +94,12 @@
 //   );
 // }
 
+import { useResume } from "@/app/context/ResumeContext";
 
-
-export default function ModernTemplate({ data }: { data: any }) {
+export default function ModernTemplate() {
+  const {resumeitems} = useResume()
   // 1. Destructure the "colors" state parameter from incoming data
-  const { personalInfo, education, skills, experience, colors } = data;
+  const { personalInfo, education, skills, experience, colors } = resumeitems;
 
   // 2. Safe mapping dictionary linking color IDs to direct Tailwind utility variations
   const themeStyles: Record<string, { bg: string; text: string; timelineDot: string }> = {

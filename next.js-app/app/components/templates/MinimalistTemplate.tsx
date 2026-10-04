@@ -2,6 +2,8 @@
 // export default function MinimalistTemplate({ data }: { data: any }) {
 //   const { personalInfo, education, skills, experience } = data;
 
+import { useResume } from "@/app/context/ResumeContext";
+
 //   return (
 //     <div className="w-full max-w-4xl mx-auto bg-white shadow-xl min-h-[297mm] p-12 text-zinc-800 font-serif border border-zinc-100">
 //       {/* Header */}
@@ -207,9 +209,10 @@
 
 
 
-export default function MinimalistTemplate({ data }: { data: any }) {
+export default function MinimalistTemplate() {
+  const {resumeitems} = useResume()
   // 1. Destructure "colors" state parameter from incoming data alongside the rest
-  const { personalInfo, education, skills, experience, colors } = data;
+  const { personalInfo, education, skills, experience, colors } = resumeitems;
 
   // 2. Safe mapping dictionary linking color IDs to direct utility variations
   const themeStyles: Record<string, { text: string; bg: string; border: string }> = {

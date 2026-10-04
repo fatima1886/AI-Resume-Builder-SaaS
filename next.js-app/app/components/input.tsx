@@ -3,62 +3,43 @@
 import React from 'react'
 import { useState } from 'react'
 import AiHelperButton from './AiHelperButton'
+import { useResume } from '../context/ResumeContext'
 
-type ResumeItem = {
-  colors: string
-  template: string
-  personalInfo: {
-    firstName: string
-    lastName: string
-    email: string
-    phone: string
-    location: string
-    portfolioUrl: string
-    summary: string
-  }
-  education: { id: string; school: string; degree: string; graduationDate: string }[]
-  skills: string[]
-  experience: {
-    id: string
-    company: string
-    role: string
-    startDate: string
-    endDate: string
-    description: string
-  }[]
-}
+// type ResumeItem = {
+//   colors: string
+//   template: string
+//   personalInfo: {
+//     firstName: string
+//     lastName: string
+//     email: string
+//     phone: string
+//     location: string
+//     portfolioUrl: string
+//     summary: string
+//   }
+//   education: { id: string; school: string; degree: string; graduationDate: string }[]
+//   skills: string[]
+//   experience: {
+//     id: string
+//     company: string
+//     role: string
+//     startDate: string
+//     endDate: string
+//     description: string
+//   }[]
+// }
 
-type InputsectionProps = {
-  resumeitem: ResumeItem
-  setresumeitem: React.Dispatch<React.SetStateAction<ResumeItem>>
-}
+// type InputsectionProps = {
+//   resumeitems: ResumeItem
+//   setresumeitems: React.Dispatch<React.SetStateAction<ResumeItem>>
+// }
 
-const Inputsection = ({resumeitem, setresumeitem}: InputsectionProps) => {
-//     const itemlist = {
-//         template: '',
-//          personalInfo: {
-//     firstName: '',
-//     lastName: '',
-//     email: '',
-//     phone: '',
-//       location: '',    
-//     portfolioUrl: '',  
-//     summary: '',
-//   },
-//    education: [
-//     { id: crypto.randomUUID(), school: '', degree: '', graduationDate: '' }
-//   ],
-//   skills: [] as string[], // Array of strings: ['React', 'Node.js']
-//   experience: [
-//     { id:crypto.randomUUID() , company: '', role: '', startDate: '', endDate: '', description: '' }
-//   ],
-
-//     }
-// const [resumeitem, setresumeitem] = useState(itemlist)
+const Inputsection = () => {
+  const {resumeitems, setresumeitems} = useResume()
 const [skillInput, setSkillInput] = useState('')
 
 function handleAdd() {
- setresumeitem(prev => ({
+ setresumeitems(prev => ({
     ...prev, // Copy all other sections intact (like personalInfo, experience, etc.)
     education: [
       ...prev.education, // Copy all existing education entries
@@ -68,7 +49,7 @@ function handleAdd() {
 }
 
 function hangleEducation(currentid: string, parameter: string, value: string) {
-  setresumeitem(prev =>({
+  setresumeitems(prev =>({
     ...prev,
     education: prev.education.map(item =>
       item.id === currentid ? { ...item, [parameter]: value } : item
@@ -77,7 +58,7 @@ function hangleEducation(currentid: string, parameter: string, value: string) {
 }
 
 function handleExperience() {
-  setresumeitem(prev => ({
+  setresumeitems(prev => ({
     ...prev,
     experience: [
       ...prev.experience,
@@ -88,7 +69,7 @@ function handleExperience() {
 
 
 function handlechangeexp(specificid:string, parameter:string , value:string) {
-  setresumeitem(prev => ({
+  setresumeitems(prev => ({
     ...prev,
     experience: prev.experience.map(item =>
       item.id === specificid ? { ...item, [parameter]: value } : item
@@ -99,14 +80,14 @@ function handlechangeexp(specificid:string, parameter:string , value:string) {
 
 
 function removeitem(targetid: string) {
-  setresumeitem(prev => ({
+  setresumeitems(prev => ({
     ...prev,
     experience: prev.experience.filter(item => item.id !== targetid)
   }));
 }
 
 function handleremove(targetindex: number) {
-  setresumeitem(prev => ({
+  setresumeitems(prev => ({
     ...prev,
     skills: prev.skills.filter((_, index) => index !== targetindex)
   }))
@@ -131,7 +112,7 @@ function handleremove(targetindex: number) {
  { id: "ashGray", name: "Ash Gray", hex: "#F3F4F6" }
   ].map((colorObj) => {
     // 1. Properly check against the exact object ID key
-    const isSelected = resumeitem.colors === colorObj.id;
+    const isSelected = resumeitems.colors === colorObj.id;
 
     return (
       <label
@@ -149,7 +130,7 @@ function handleremove(targetindex: number) {
           value={colorObj.id}
           checked={isSelected}
           // 2. FIXED: Correctly updates 'colors' key in the state instead of 'template'
-          onChange={(e) => setresumeitem((prev) => ({ ...prev, colors: e.target.value }))}
+          onChange={(e) => setresumeitems((prev) => ({ ...prev, colors: e.target.value }))}
           className="absolute top-4 right-4 accent-sky-600 sr-only "
         />
       </label>
@@ -161,8 +142,8 @@ function handleremove(targetindex: number) {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {['Modern', 'Minimalist', 'Professional'].map((tpl) => {
           const value = tpl.toLocaleLowerCase();
-          const isSelected = resumeitem.template === value;
-console.log(resumeitem);
+          const isSelected = resumeitems.template === value;
+console.log(resumeitems);
           return (
             <label
               key={tpl}
@@ -177,7 +158,7 @@ console.log(resumeitem);
                 name="template"
                 value={value}
                 checked={isSelected}
-                onChange={(e) => setresumeitem((prev) => ({ ...prev, template: e.target.value }))}
+                onChange={(e) => setresumeitems((prev) => ({ ...prev, template: e.target.value }))}
                 className="absolute top-4 right-4 accent-sky-600"
               />
               <span className="font-semibold text-slate-800 text-sm">{tpl}</span>
@@ -199,42 +180,42 @@ console.log(resumeitem);
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="flex flex-col gap-1.5">
             <label className="text-xs font-semibold text-slate-600 tracking-wide uppercase">First Name</label>
-            <input type="text" name="firstName" onChange={(e) => setresumeitem((prev) => ({ ...prev, personalInfo: { ...prev.personalInfo, firstName: e.target.value } }))} placeholder="Ali" className="w-full px-4 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all text-slate-800" />
+            <input type="text" name="firstName" onChange={(e) => setresumeitems((prev) => ({ ...prev, personalInfo: { ...prev.personalInfo, firstName: e.target.value } }))} placeholder="Ali" className="w-full px-4 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all text-slate-800" />
           </div>
 
           <div className="flex flex-col gap-1.5">
             <label className="text-xs font-semibold text-slate-600 tracking-wide uppercase">Last Name</label>
-            <input type="text" name="lastName" onChange={(e)=>setresumeitem((prev)=>({...prev, personalInfo: {...prev.personalInfo, lastName: e.target.value}}))} placeholder="Raza" className="w-full px-4 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all text-slate-800" />
+            <input type="text" name="lastName" onChange={(e)=>setresumeitems((prev)=>({...prev, personalInfo: {...prev.personalInfo, lastName: e.target.value}}))} placeholder="Raza" className="w-full px-4 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all text-slate-800" />
           </div>
 
           <div className="flex flex-col gap-1.5">
             <label className="text-xs font-semibold text-slate-600 tracking-wide uppercase">Email Address</label>
-            <input type="email" name="email" onChange={(e)=>setresumeitem((prev)=> ({...prev, personalInfo: {...prev.personalInfo, email: e.target.value}}))} placeholder="Ali@example.com" className="w-full px-4 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all text-slate-800" />
+            <input type="email" name="email" onChange={(e)=>setresumeitems((prev)=> ({...prev, personalInfo: {...prev.personalInfo, email: e.target.value}}))} placeholder="Ali@example.com" className="w-full px-4 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all text-slate-800" />
           </div>
 
           <div className="flex flex-col gap-1.5">
             <label className="text-xs font-semibold text-slate-600 tracking-wide uppercase">Phone Number</label>
-            <input type="tel" name="phone" onChange={(e)=>setresumeitem((prev)=>({...prev, personalInfo: {...prev.personalInfo, phone: e.target.value}}))} placeholder="+92 300 1234567" className="w-full px-4 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all text-slate-800" />
+            <input type="tel" name="phone" onChange={(e)=>setresumeitems((prev)=>({...prev, personalInfo: {...prev.personalInfo, phone: e.target.value}}))} placeholder="+92 300 1234567" className="w-full px-4 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all text-slate-800" />
           </div>
 
           <div className="flex flex-col gap-1.5">
             <label className="text-xs font-semibold text-slate-600 tracking-wide uppercase">Location</label>
-            <input type="text" name="location" onChange={(e)=>setresumeitem((prev)=>({...prev, personalInfo: {...prev.personalInfo, location: e.target.value}}))} placeholder="Gulberg, Lahore" className="w-full px-4 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all text-slate-800" />
+            <input type="text" name="location" onChange={(e)=>setresumeitems((prev)=>({...prev, personalInfo: {...prev.personalInfo, location: e.target.value}}))} placeholder="Gulberg, Lahore" className="w-full px-4 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all text-slate-800" />
           </div>
 
           <div className="flex flex-col gap-1.5">
             <label className="text-xs font-semibold text-slate-600 tracking-wide uppercase">Portfolio URL</label>
-            <input type="text" name="portfolioUrl" onChange={(e)=>setresumeitem((prev)=>({...prev, personalInfo: {...prev.personalInfo, portfolioUrl:e.target.value}}))} placeholder="www.google.com" className="w-full px-4 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all text-slate-800" />
+            <input type="text" name="portfolioUrl" onChange={(e)=>setresumeitems((prev)=>({...prev, personalInfo: {...prev.personalInfo, portfolioUrl:e.target.value}}))} placeholder="www.google.com" className="w-full px-4 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all text-slate-800" />
           </div>
 
           <div className="md:col-span-2 flex flex-col gap-1.5">
             <label className="text-xs font-semibold text-slate-600 tracking-wide uppercase">Professional Summary</label>
-            <textarea name="summary" value={resumeitem.personalInfo.summary} rows={4} onChange={(e)=>setresumeitem((prev)=>({...prev, personalInfo: {...prev.personalInfo, summary: e.target.value }}))} placeholder="Briefly describe your career goals and standout capabilities..." className="w-full px-4 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all text-slate-800 resize-none" />
+            <textarea name="summary" value={resumeitems.personalInfo.summary} rows={4} onChange={(e)=>setresumeitems((prev)=>({...prev, personalInfo: {...prev.personalInfo, summary: e.target.value }}))} placeholder="Briefly describe your career goals and standout capabilities..." className="w-full px-4 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all text-slate-800 resize-none" />
 <AiHelperButton
-  currentText={resumeitem.personalInfo.summary}
+  currentText={resumeitems.personalInfo.summary}
   fieldType="summary"
   onRefine={(refinedText) =>
-    setresumeitem((prev) => ({
+    setresumeitems((prev) => ({
       ...prev,
       personalInfo: { ...prev.personalInfo, 'summary' : refinedText },
     }))
@@ -258,7 +239,7 @@ console.log(resumeitem);
             + Add Education
           </button>
         </div>
-{resumeitem.education.map((obj) => (
+{resumeitems.education.map((obj) => (
             <div key={obj.id} className="p-4 bg-white border border-slate-200 rounded-2xl relative flex flex-col gap-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-1.5 md:col-span-2">
@@ -324,7 +305,7 @@ console.log(resumeitem);
             onClick={() => {
               const skill = skillInput.trim()
               if (!skill) return
-              setresumeitem((prev) => ({ ...prev, skills: [...prev.skills, skill] }))
+              setresumeitems((prev) => ({ ...prev, skills: [...prev.skills, skill] }))
               setSkillInput('')
             }}
           >
@@ -333,7 +314,7 @@ console.log(resumeitem);
         </div>
 
         <div className="flex flex-wrap gap-2 pt-2">
-          {resumeitem.skills.map((skill,index) => (
+          {resumeitems.skills.map((skill,index) => (
             <span key={skill} className="inline-flex items-center gap-1.5 px-3 py-1 bg-slate-100 hover:bg-red-50 hover:text-red-600 text-slate-600 font-medium text-xs rounded-lg transition-all cursor-pointer group">
               {skill}
               <span onClick={()=> handleremove(index)} className="text-slate-400 group-hover:text-red-500 text-[10px]">✕</span>
@@ -360,7 +341,7 @@ console.log(resumeitem);
           </button>
         </div>
 
-{resumeitem.experience.map((item) => (
+{resumeitems.experience.map((item) => (
         <div key={item.id} className="p-5 border border-slate-200 rounded-xl bg-slate-50/30 space-y-4 relative group">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="flex flex-col gap-1.5">

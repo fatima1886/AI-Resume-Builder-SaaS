@@ -163,6 +163,7 @@
 // app/layout.tsx
 import type { Metadata } from "next";
 import { Prata, Instrument_Serif } from "next/font/google";
+import { ResumeProvider } from '@/app/context/ResumeContext'
 // Core 3 Import: Using 'Show' instead of SignedIn/SignedOut
 import { ClerkProvider, Show, SignInButton, SignUpButton, UserButton } from '@clerk/nextjs'; 
 import "./globals.css";
@@ -185,6 +186,13 @@ const prataSerif = Prata({
 
 export const metadata: Metadata = {
   title: "Resume.ai | Premium AI Resume Builder",
+  description: "Create professional high-converting resumes instantly.",
+  icons: [
+      {
+        url: "/icon.svg",
+        type: "image/svg+xml",
+      }
+    ],
 };
 
 export default function RootLayout({
@@ -227,9 +235,9 @@ export default function RootLayout({
 
             </div>
           </header>
-
+<ResumeProvider>
           <main className="flex-1 flex flex-col">{children}</main>
-
+</ResumeProvider>
           <div className="mt-[-80] z-50">
             <Footer />
           </div>
