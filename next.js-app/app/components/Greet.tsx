@@ -1,20 +1,3 @@
-// import React from 'react'
-
-// const Greet = () => {
-//   return (
-//     <div className='flex flex-col md:flex-row gap-4 pb-30'>
-// <div>
-//     <h1 className='text-4xl text-slate-900'>Welcome Back, <span className='text-sky-500'>Fatima</span></h1>
-//     <p>Ready to land your dream job? Choose your next step</p>
-// </div>
-// <div>
-//     <button className='bg-sky-500 hover:bg-sky-600 py-10 px-20'>Start Resume</button>
-// </div>
-//     </div>
-//   )
-// }
-
-// export default Greet
 
 
 import React from 'react'

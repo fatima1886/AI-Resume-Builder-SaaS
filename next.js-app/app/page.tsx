@@ -79,26 +79,3 @@ export default Home;
 
 
 
-// import VignetteGradientMesh from "@/app/components/ui/background";
-
-// export default function Home() {
-//   return (
-//     /* The outer container MUST force full-width, full-height, and remain relative */
-//     <div className="relative min-h-screen w-full overflow-x-hidden">
-      
-//       {/* 1. Mount the background component */}
-//       <VignetteGradientMesh variant="hero" />
-
-//       {/* 2. Wrap your content inside a relative element with a higher layer priority (z-10) */}
-//       <main className="relative z-10 flex min-h-screen flex-col items-center justify-center p-6 text-center">
-//         <h1 className="text-5xl font-bold tracking-tight text-[var(--color-bg-accent)]">
-//           Sky 500 Modern Interface
-//         </h1>
-//         <p className="mt-4 max-w-md text-lg opacity-70">
-//           Your custom vector meshes and soft geometric lines are running directly underneath this card surface.
-//         </p>
-//       </main>
-//     </div>
-//   );
-// }
-
