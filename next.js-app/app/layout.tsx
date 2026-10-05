@@ -54,7 +54,7 @@ export default function RootLayout({
                 {/* Core 3: Handled conditionally via the 'when' prop */}
                 <Show when="signed-out">
                   <SignInButton mode="modal">
-                    <button onClick={() => console.log("button clicked")} className="text-sm font-medium text-slate-700 hover:text-slate-900 cursor-pointer">
+                    <button className="text-sm font-medium text-slate-700 hover:text-slate-900 cursor-pointer">
                       Sign In
                     </button>
                   </SignInButton>
