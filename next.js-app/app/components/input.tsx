@@ -5,34 +5,6 @@ import { useState } from 'react'
 import AiHelperButton from './AiHelperButton'
 import { useResume } from '../context/ResumeContext'
 
-// type ResumeItem = {
-//   colors: string
-//   template: string
-//   personalInfo: {
-//     firstName: string
-//     lastName: string
-//     email: string
-//     phone: string
-//     location: string
-//     portfolioUrl: string
-//     summary: string
-//   }
-//   education: { id: string; school: string; degree: string; graduationDate: string }[]
-//   skills: string[]
-//   experience: {
-//     id: string
-//     company: string
-//     role: string
-//     startDate: string
-//     endDate: string
-//     description: string
-//   }[]
-// }
-
-// type InputsectionProps = {
-//   resumeitems: ResumeItem
-//   setresumeitems: React.Dispatch<React.SetStateAction<ResumeItem>>
-// }
 
 const Inputsection = () => {
   const {resumeitems, setresumeitems} = useResume()
