@@ -36,7 +36,7 @@ import DashboardHeader from '../components/dashboardheader'
 
 const Dashboard = () => {
   return (
-    <div className='p-10 pb-20'><VignetteGradientMesh variant="hero"/>
+    <div className='p-5 md:p-10 pb-20'><VignetteGradientMesh variant="hero"/>
     {/* <Greet/> */}
     <DashboardHeader/>
     </div>

@@ -263,7 +263,7 @@ console.log(resumeitems);
       {/* =========================================================================
         3. SKILLS SECTION
       ========================================================================= */}
-      <div className="p-6 bg-white border border-slate-200 rounded-2xl shadow-sm space-y-4">
+      {/* <div className="p-6 bg-white border border-slate-200 rounded-2xl shadow-sm space-y-4">
         <div>
           <h2 className="text-xl font-bold text-slate-900">Core Skills</h2>
           <p className="text-sm text-slate-500">List core tech tools, frameowrks or certifications.</p>
@@ -293,7 +293,48 @@ console.log(resumeitems);
             </span>
           ))}
         </div>
-      </div>
+      </div> */}
+
+
+      <div className="p-4 sm:p-6 bg-white border border-slate-200 rounded-2xl shadow-sm space-y-4">
+  <div>
+    <h2 className="text-xl font-bold text-slate-900">Core Skills</h2>
+    <p className="text-sm text-slate-500">List core tech tools, frameowrks or certifications.</p>
+  </div>
+
+  {/* Changed flex to flex-col for mobile, sm:flex-row for laptop layout */}
+  <div className="flex flex-col sm:flex-row gap-2 sm:items-center">
+    <input 
+      type="text" 
+      value={skillInput} 
+      onChange={(e) => setSkillInput(e.target.value)} 
+      placeholder="Add a skill (e.g., React, TypeScript)" 
+      className="w-full sm:flex-1 px-4 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 focus:bg-white transition-all text-slate-800" 
+    />
+    <button
+      type="button"
+      className="w-full sm:w-auto justify-center px-4 py-2.5 sm:p-0 bg-slate-50 sm:bg-transparent border border-slate-200 sm:border-none rounded-xl text-xs font-semibold text-sky-600 hover:text-sky-700 transition-colors flex items-center gap-1 shrink-0"
+      onClick={() => {
+        const skill = skillInput.trim()
+        if (!skill) return
+        setresumeitems((prev) => ({ ...prev, skills: [...prev.skills, skill] }))
+        setSkillInput('')
+      }}
+    >
+      + Add skill
+    </button>
+  </div>
+
+  <div className="flex flex-wrap gap-2 pt-2">
+    {resumeitems.skills.map((skill, index) => (
+      <span key={skill} className="inline-flex items-center gap-1.5 px-3 py-1 bg-slate-100 hover:bg-red-50 hover:text-red-600 text-slate-600 font-medium text-xs rounded-lg transition-all cursor-pointer group">
+        {skill}
+        <span onClick={() => handleremove(index)} className="text-slate-400 group-hover:text-red-500 text-[10px]">✕</span>
+      </span>
+    ))}
+  </div>
+</div>
+
 
       {/* =========================================================================
         4. WORK EXPERIENCE SECTION
